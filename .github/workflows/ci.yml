@@ -21,4 +21,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install
+      - name: Seal Security Fix
+        uses: seal-community/cli-action@latest
+        with:
+          mode: fix
+          fix_mode: remote
+          token: ${{ secrets.SEAL_TOKEN2 }}
+          target: package.json
       - run: npm test
